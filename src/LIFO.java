@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class FIFO implements TAD {
+public class LIFO implements TAD {
 	private ArrayList<String> pila;
 	int numMaximo;
 	
-	public FIFO(int numMaximo) {
+	public LIFO(int numMaximo) {
 		this.numMaximo=numMaximo;
 		pila=new ArrayList<String>(numMaximo); 
 	}
@@ -18,30 +18,28 @@ public class FIFO implements TAD {
 		}
 		else {
 			throw new TADLleno("TAD lleno. No es posible insertar más elementos");
-		}
-		
+		}		
 	}
 	public String pop() throws TADVacio, TADVaciado {
 		if(pila.size()==0) {
 			throw new TADVacio("TAD vacio. No es posible retirar más elementos");
 		}
 		else {
-			pila.remove(0); 
+			pila.remove(pila.size()-1); 
 			if(pila.size()==0) {
 				throw new TADVaciado("TAD se ha vaciado tras la última retirada");
 			}
 			else {
 				return "Elemento retirado de la pila";
 			}
-		}
-	
+		}	
 	}
 	public String peek() throws TADVacio {
 		if(pila.size()==0) {
 			throw new TADVacio("TAD vacio. No es posible retirar más elementos");
 		}
 		else {
-			return pila.get(0);
+			return pila.get(pila.size()-1);
 		}
 	}
 	public int size() {
